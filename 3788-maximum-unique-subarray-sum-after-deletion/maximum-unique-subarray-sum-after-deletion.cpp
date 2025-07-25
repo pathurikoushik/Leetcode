@@ -1,12 +1,18 @@
 class Solution {
- public:
-  int maxSum(vector<int>& nums) {
-    const int mx = ranges::max(nums);
-    if (mx <= 0)
-      return mx;
-    unordered_set<int> numsSet(nums.begin(), nums.end());
-    return accumulate(numsSet.begin(), numsSet.end(), 0,
-                      [](int acc, int num) { return acc + max(0, num); });
-  }
+public:
+    int maxSum(vector<int>& nums) {
+        int maxElement = *max_element(nums.begin(), nums.end());
+        if (maxElement <= 0) {
+            return maxElement;
+        }
+        
+        unordered_set<int> uniqueNums(nums.begin(), nums.end());
+        int sum = 0;
+        for (int num : uniqueNums) {
+            if (num > 0) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
 };
-
